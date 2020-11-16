@@ -25,7 +25,7 @@ Taking things down before I fucking forget.
 
 
 
-some photos: 
+added some photos
 
 
 
