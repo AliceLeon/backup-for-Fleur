@@ -19,6 +19,16 @@ Taking things down before I fucking forget.
 
 
 
+#### Other shit
+
+- Make sure you have `#define COLOR_ORDER RGB` on ESP8266. Or it will all go **green**.
+
+
+
+some photos: 
+
+
+
 I thank the open source community with all of my heart.
 
 I'll probably add the links later but idk.

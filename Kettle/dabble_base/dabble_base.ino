@@ -20,20 +20,23 @@ void setup() {
   digitalWrite(8, LOW);
   digitalWrite(9, LOW);
 
-  pinMode(PIN, OUTPUT);
-  digitalWrite(PIN, HIGH);
 }
 
 void loop() {
+
+  Dabble.processInput();
   if (GamePad.isUpPressed())
   {
+    Serial.println("?");
     digitalWrite(8, LOW);
     digitalWrite(9, HIGH);
     delay(1);
     digitalWrite(9, LOW);
     delay(1);
-  } elseif (GamePad.isDownPressed())
+  }
+  if (GamePad.isDownPressed())
   {
+    Serial.println("!");
     digitalWrite(8, HIGH);
     digitalWrite(9, HIGH);
     delay(1);
