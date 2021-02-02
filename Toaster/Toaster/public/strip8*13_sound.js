@@ -5,14 +5,20 @@ var showPixelLocations = true;
 //Change the HTML Id of the canvas.
 var canvasId = "strip64_flames"
 
+let yellow = 46;
+
 let mic, fft;
 var socket2;
 
 let slider;
-let redButton;
+let frownButton;
 let smileButton;
-let isAllRed = false;
-let isSmiley = true;
+let alwaysYellowButton;
+
+let isFrowning = false;
+let isSmiley = false;
+let isAlwaysYellow = false;
+
 function setup() {
     // background(0);
     // socket2 = io.connect('192.168.1.217:1234');
@@ -35,13 +41,17 @@ function setup() {
     slider.position(10, 10);
     slider.style('width', '80px');
 
-    redButton = createButton('Go Red');
+    redButton = createButton('Frown');
     redButton.position(10, 50);
-    redButton.mousePressed(goRed);
+    redButton.mousePressed(Frown);
 
     smileButton = createButton('Smiley Face');
     smileButton.position(10, 170);
     smileButton.mousePressed(Smiley);
+
+    alwaysYellowButton = createButton('Always Yellow');
+    alwaysYellowButton.position(10, 80);
+    alwaysYellowButton.mousePressed(fullYellow);
 }
 function newDrawing(data) {
     console.log(`messages from strangers received: ${data}`)
@@ -59,12 +69,24 @@ function draw() {
     text('tolerance: ' + val / 100, 12, 40);
     // background(val*50);
 
-
     let volume = mic.getLevel();
-    if (volume > val / 100) {
-        stroke(255, 0, 0, 200);
+    if (!isAlwaysYellow) {
+        text('Full Yellow: Off', 12, 112);
+        if (volume > val / 100) {
+            colorMode(HSB);
+            stroke(22, 255, 255);
+            colorMode(RGB);
+        } else {
+            colorMode(HSB);
+            stroke(yellow, 255, 255);
+            colorMode(RGB);
+        }
+
     } else {
-        stroke(255, 255, 0, 200);
+        colorMode(HSB);
+        stroke(yellow, 255, 255);
+        colorMode(RGB);
+        text('Full Yellow: On', 12, 112);
     }
 
     let spectrum = fft.analyze();
@@ -72,20 +94,15 @@ function draw() {
 
     let totalSpectrum = floor(spectrum.length * 0.6);
     let sectionNum = floor(totalSpectrum / 13);
-    if(isSmiley){
+    if (isSmiley) {
         fill(255);
-        noStroke();
-        /*
-        ellipse(149,75,10,10);
-        ellipse(253,75,10,10);
-       //*/
-        //*/
-
-        stroke(255);
-        strokeWeight(6);
+        colorMode(HSB);
+        stroke(yellow, 255, 50);
+        colorMode(RGB);
+        strokeWeight(7);
         noFill();
-        line(175,62,175,88);
-        line(227,62,227,88);
+        line(175, 62, 175, 88);
+        line(227, 62, 227, 88);
         beginShape();
         vertex(136, 73);
         vertex(136, 127);
@@ -94,10 +111,27 @@ function draw() {
         endShape();
         strokeWeight(4);
 
-    }else if(isAllRed){
-        background(255,0,0);
-    }else
-    {
+    } else if (isFrowning) {
+        fill(255);
+        noStroke();
+        colorMode(HSB);
+        stroke(yellow, 255, 50);
+        colorMode(RGB);
+        strokeWeight(7);
+        noFill();
+        line(175, 62, 175, 75);
+        line(227, 62, 227, 75);
+        // line(136,127,266,100);
+        beginShape();
+
+        vertex(136, 127);
+        vertex(136, 100);
+
+        vertex(266, 100);
+        vertex(266, 127);
+        endShape();
+        strokeWeight(4);
+    } else {
         for (i = 0; i < 13; i += 1) {
             // line(i * 13+width/2-6*13, 140, i * 13+width/2-6*13,map(spectrum[i*sectionNum], 0, 255, 140, 40))
             let top = map(getAreaAverage(spectrum, i * sectionNum, sectionNum), 0, 255, 140, 0);
@@ -116,11 +150,14 @@ function getAreaAverage(array, start, part) {
     total = total / part;
     return total;
 }
-function goRed(){
-    isAllRed = !isAllRed;
+function Frown() {
+    isFrowning = !isFrowning;
 }
-function Smiley(){
+function Smiley() {
     isSmiley = !isSmiley;
+}
+function fullYellow() {
+    isAlwaysYellow = !isAlwaysYellow;
 }
 /*
 function mouseDragged(){
