@@ -6,7 +6,7 @@ Taking things down before I forget.
 
 - [Fadecandy tutorial](https://www.instructables.com/How-to-Control-Addressable-LEDs-With-Fadecandy-and/) by Amy Goodchild.
 - [How to set up Fadecandy Mac server](https://groups.google.com/g/fadecandy/c/FvVmTFIXn5A)
-- For some reason, my processing deosn't detect microphone so I switched to P5.js. 
+- For some reason, my processing deosn't detect the microphone so I switched to P5.js. 
 
 #### Kettle
 
@@ -24,7 +24,7 @@ Taking things down before I forget.
 
 - Make sure you have `#define COLOR_ORDER RGB` on ESP8266. Or it will all go **green**.
 
-- added some photos
+- Added some photos
 
 
 
