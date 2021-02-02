@@ -1,11 +1,12 @@
 # For Fleur
 
-Taking things down before I fucking forget.
+Taking things down before I forget.
 
 #### Toaster
 
-- Fadecandy Mac server: https://groups.google.com/g/fadecandy/c/FvVmTFIXn5A
-- Can't really get my processing detect microphone so I switched to P5.js and even this the motherfucker won't run on chrome. 
+- [Fadecandy tutorial](https://www.instructables.com/How-to-Control-Addressable-LEDs-With-Fadecandy-and/) by Amy Goodchild.
+- [How to set up Fadecandy Mac server](https://groups.google.com/g/fadecandy/c/FvVmTFIXn5A)
+- For some reason, my processing deosn't detect microphone so I switched to P5.js. 
 
 #### Kettle
 
@@ -19,16 +20,14 @@ Taking things down before I fucking forget.
 
 
 
-#### Other shit
+#### Others
 
 - Make sure you have `#define COLOR_ORDER RGB` on ESP8266. Or it will all go **green**.
 
-
-
-added some photos
+- added some photos
 
 
 
 I thank the open source community with all of my heart.
 
-I'll probably add the links later but idk.
+Link to final project: https://aliceleon.org/post/conterproductive/
